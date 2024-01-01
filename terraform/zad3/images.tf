@@ -20,6 +20,11 @@ resource "docker_container" "db" {
   name = "db"
   image = "postgres"
   network_mode = "tfnet"
+  env = [
+    "POSTGRES_DB=app",
+    "POSTGRES_USER=app_user",
+    "POSTGRES_PASSWORD=app_pass",
+  ]
 }
 
 # resource "docker_image" "postgres" {
