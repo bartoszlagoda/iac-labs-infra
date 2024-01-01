@@ -12,27 +12,6 @@ resource "docker_image" "example_app" {
   }
 }
 
-resource "docker_image" "postgres" {
-  name = "postgres"
-  build {
-    #context = "${path.cwd}/../../iac-labs/postgres"
-    #tag  = ["postgres:latest"]
-    #dockerfile = "${path.cwd}/../../iac-labs/postgres/Dockerfile"
-    build_arg = {
-      POSTGRES_DB = "app"
-      POSTGRES_USER = "app_user"
-      POSTGRES_PASSWORD = "app_pass"
-    }
-  }
-}
-
-resource "docker_container" "db" {
-  name = "db"
-  image = "${docker_image.postgres.id}"
-  network_mode = "tfnet"
-  env = [
-    "POSTGRES_DB=app",
-    "POSTGRES_USER=app_user",
-    "POSTGRES_PASSWORD=app_pass"
-  ]
-}
+# resource "docker_image" "postgres" {
+#   Uzupenij
+# }
