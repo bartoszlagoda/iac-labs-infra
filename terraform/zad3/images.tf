@@ -15,9 +15,9 @@ resource "docker_image" "example_app" {
 resource "docker_image" "postgres" {
   name = "postgres"
   build {
-    context = "${path.cwd}/../../iac-labs/postgres"
-    tag  = ["postgres:latest"]
-    dockerfile = "${path.cwd}/../../iac-labs/postgres/Dockerfile"
+    #context = "${path.cwd}/../../iac-labs/postgres"
+    #tag  = ["postgres:latest"]
+    #dockerfile = "${path.cwd}/../../iac-labs/postgres/Dockerfile"
     build_arg = {
       POSTGRES_DB = "app"
       POSTGRES_USER = "app_user"
