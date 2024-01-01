@@ -30,9 +30,9 @@ resource "docker_container" "db" {
   name = "db"
   image = "${docker_image.postgres.id}"
   network_mode = "tfnet"
-  build_arg = {
-    POSTGRES_DB = "app"
-    POSTGRES_USER = "app_user"
-    POSTGRES_PASSWORD = "app_pass"
-  }
+  env = [
+    "POSTGRES_DB=app",
+    "POSTGRES_USER=app_user",
+    "POSTGRES_PASSWORD=app_pass"
+  ]
 }
