@@ -10,6 +10,15 @@ resource "docker_image" "example_app" {
       author : "student"
     }
   }
+}
+
+resource "docker_image" "postgres" {
+  name = "postgres"
+}
+
+resource "docker_container" "db" {
+  name  = "db"
+  image = docker_image.postgres.image_id
 
   env = {
     POSTGRES_DB       = "app",
@@ -21,30 +30,8 @@ resource "docker_image" "example_app" {
     mode    = "bridge"
     networks = [docker_network.tfnet.name]
   }
-
-  depends_on = [docker_image.postgres]
 }
 
 resource "docker_network" "tfnet" {
   name = "tfnet"
-}
-
-resource "docker_image" "postgres" {
-  name = "postgres:latest"
-}
-
-resource "docker_container" "db" {
-  name  = "my_postgres_db"
-  image = docker_image.postgres.image_id
-
-  env = {
-    POSTGRES_DB       = "my_database",
-    POSTGRES_USER     = "my_user",
-    POSTGRES_PASSWORD = "my_password",
-  }
-
-  ports {
-    internal = 5432
-    external = 5432
-  }
 }
