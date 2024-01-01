@@ -21,14 +21,9 @@ resource "docker_container" "db" {
   image = docker_image.postgres.image_id
 
   env = {
-    "POSTGRES_DB" = "app",
-    "POSTGRES_USER" = "app_user",
-    "POSTGRES_PASSWORD" = "app_pass",
-  }
-
-  network {
-    mode    = "bridge"
-    networks = [docker_network.tfnet.name]
+    "POSTGRES_DB" : "app",
+    "POSTGRES_USER" : "app_user",
+    "POSTGRES_PASSWORD" : "app_pass",
   }
 }
 
