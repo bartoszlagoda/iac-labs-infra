@@ -12,6 +12,16 @@ resource "docker_image" "example_app" {
   }
 }
 
+resource "docker_image" "postgres" {
+  name = "postgres"
+}
+
+resource "docker_container" "db" {
+  name = "db"
+  image = "postgres"
+  network_mode = "tfnet"
+}
+
 # resource "docker_image" "postgres" {
 #   Uzupenij
 # }
